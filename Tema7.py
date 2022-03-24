@@ -29,11 +29,10 @@ class FormaGeometrica(ABC):
         pass
 
     def descrie(self):
-        print("Cel mai probabil am colturi")
+        return "Cel mai probabil am colturi"
 
 
 class Patrat(FormaGeometrica):
-    latura = None
 
 
     def __init__(self, latura):
@@ -41,29 +40,32 @@ class Patrat(FormaGeometrica):
 
     @property
     def latura(self):
-        return  self.__latura
+        return self.__latura
+
     @latura.getter
     def latura(self):
-        print('Getting latura')
+        print(f'Latura este {self.__latura}')
         return self.__latura
 
     @latura.setter
-    def latura(self, value):
-        print('Am schimbat latura cu ' + value)
-        self.__latura = value
+    def latura(self, latura):
+        print(f'Noua latura este  {latura}')
+        self.__latura = latura
 
     @latura.deleter
     def latura(self):
         print('Am sters latura')
-        del self.__latura
+        self.__latura = None
 
     def aria(self):
-        return self.__latura * 4
+        aria = self.__latura * 4
+        print(f"Aria patratului este {aria} ")
 
 
 class Cerc(FormaGeometrica):
-    def __init__(self, raza):
-        self.__raza = raza
+
+    def __init__(self, __raza):
+        self.__raza = __raza
 
     @property
     def raza(self):
@@ -71,27 +73,43 @@ class Cerc(FormaGeometrica):
 
     @raza.getter
     def raza(self):
-        print('Getting raza')
+        print(f'Raza ta este {self.__raza} ')
         return self.__raza
 
     @raza.setter
-    def raza(self,value):
-        print('Am schimbat raza cu ' + value)
-        self.__raza = value
+    def raza(self, raza):
+        self.__raza = raza
+        print(f'Noua raza este {raza}')
         return self.__raza
 
     @raza.deleter
     def raza(self):
         print('Am sters raza')
-        del self.__raza
+        self.__raza = None
 
     def aria(self):
-        aria = self.pi + self.__raza
-        return aria
+        aria = FormaGeometrica.pi * (self.__raza * 2)
+        print(f"Aria cercului este {aria}")
 
     def descrie(self):
         return "Sunt un cerc...nu am colturi"
 
 
-samy = Cerc(4)
-print(samy.aria)
+patrat1 = Patrat(2)
+patrat1.latura = 4
+patrat1.aria()
+patrat1.latura
+del patrat1.latura
+patrat1.latura
+print(patrat1.descrie())
+
+print("---------------")
+
+cerc1 = Cerc(2)
+cerc1.raza
+cerc1.raza = 3
+del cerc1.raza
+cerc1.raza = 4
+print(cerc1.descrie())
+cerc1.aria()
+
