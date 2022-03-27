@@ -29,7 +29,7 @@ class FormaGeometrica(ABC):
         pass
 
     def descrie(self):
-        return "Cel mai probabil am colturi"
+        print("Cel mai probabil am colturi")
 
 
 class Patrat(FormaGeometrica):
@@ -45,7 +45,6 @@ class Patrat(FormaGeometrica):
     @latura.getter
     def latura(self):
         print(f'Latura este {self.__latura}')
-        return self.__latura
 
     @latura.setter
     def latura(self, latura):
@@ -58,8 +57,11 @@ class Patrat(FormaGeometrica):
         self.__latura = None
 
     def aria(self):
-        aria = self.__latura * 4
-        print(f"Aria patratului este {aria} ")
+        if self.__latura == None:
+            print("Pentru a calcula aria iti trebuie o latura valida")
+        else:
+            aria = self.__latura * self.__latura
+            print(f'Aria patratului este {aria}')
 
 
 class Cerc(FormaGeometrica):
@@ -88,20 +90,21 @@ class Cerc(FormaGeometrica):
         self.__raza = None
 
     def aria(self):
-        aria = FormaGeometrica.pi * (self.__raza * 2)
-        print(f"Aria cercului este {aria}")
+        if self.__raza == None:
+            print("Pentru a calcula aria iti trebuie o raza valida")
+        else:
+            raza = FormaGeometrica.pi * self.__raza * self.__raza
+            print(f"Raza cercului este {raza}")
 
     def descrie(self):
-        return "Sunt un cerc...nu am colturi"
-
+        print("Sunt un cerc...nu am colturi")
 
 patrat1 = Patrat(2)
 patrat1.latura = 4
 patrat1.aria()
-patrat1.latura
+patrat1.descrie()
 del patrat1.latura
-patrat1.latura
-print(patrat1.descrie())
+patrat1.aria()
 
 print("---------------")
 
@@ -109,7 +112,6 @@ cerc1 = Cerc(2)
 cerc1.raza
 cerc1.raza = 3
 del cerc1.raza
-cerc1.raza = 4
-print(cerc1.descrie())
+cerc1.descrie()
 cerc1.aria()
 
