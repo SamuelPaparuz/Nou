@@ -114,5 +114,5 @@ cerc1.raza = 3
 del cerc1.raza
 cerc1.descrie()
 cerc1.aria()
-cerc1.raza = 7
+cerc1.raza = 5
 
